@@ -17,13 +17,32 @@ const Users = () => {
   }, [endpoint]);
 
   return (
-    <div>
-      <h2>Users</h2>
-      <ul>
-        {users.map((user, idx) => (
-          <li key={user.id || idx}>{user.username || user.name || JSON.stringify(user)}</li>
-        ))}
-      </ul>
+    <div className="container mt-4">
+      <h2 className="mb-4 display-6 text-primary">Users</h2>
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <table className="table table-striped table-bordered">
+            <thead className="table-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, idx) => (
+                <tr key={user.id || idx}>
+                  <td>{user.id || idx}</td>
+                  <td>{user.username || '-'}</td>
+                  <td>{user.name || '-'}</td>
+                  <td>{user.email || '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

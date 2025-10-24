@@ -17,13 +17,30 @@ const Teams = () => {
   }, [endpoint]);
 
   return (
-    <div>
-      <h2>Teams</h2>
-      <ul>
-        {teams.map((team, idx) => (
-          <li key={team.id || idx}>{team.name || JSON.stringify(team)}</li>
-        ))}
-      </ul>
+    <div className="container mt-4">
+      <h2 className="mb-4 display-6 text-info">Teams</h2>
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <table className="table table-striped table-bordered">
+            <thead className="table-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Members</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teams.map((team, idx) => (
+                <tr key={team.id || idx}>
+                  <td>{team.id || idx}</td>
+                  <td>{team.name || '-'}</td>
+                  <td>{Array.isArray(team.members) ? team.members.join(', ') : '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
